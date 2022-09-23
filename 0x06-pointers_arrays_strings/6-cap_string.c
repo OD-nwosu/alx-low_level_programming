@@ -1,27 +1,32 @@
 #include "main.h"
 
 /**
- * leet - entry
- * ONE if, Two loops only;
- * @n: input
- *
- * Return: 0;
+ * cap_string - function to capitalize all words
+ * @n: String input
+ * Return: capitalized letter
  */
 
-char *leet(char *n)
+char *cap_string(char *n)
 {
 	int i, x;
-	int find[] = {'a', 'A', 'e', 'E', 'o', 'O', 't', 'T', 'l', 'L'};
-	int change[] = {'4', '3', '0', '7', '1'};
+	int cap = 32;
+	int separator[] = {',', ';', '.', '?', '"', '(',
+		')', '{', '}', ' ', '\n', '\t'};
 
 	for (i = 0; n[i] != '\0'; i++)
 	{
-		for (x = 0; x <= 9; x++)
+		if (n[i] >= 'a' && n[i] <= 'z')
 		{
-			if (n[i] == find[x])
+			n[i] = n[i] - cap;
+		}
+		cap = 0;
+
+		for (x = 0; x <= 12; x++)
+		{
+			if (n[i] == separator[x])
 			{
-				n[i] = change[x / 2];
-				x = 9;
+				x = 12;
+				cap = 32;
 			}
 		}
 	}
